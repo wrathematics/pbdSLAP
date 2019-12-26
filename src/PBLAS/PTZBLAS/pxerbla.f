@@ -51,7 +51,7 @@
 *
       CALL BLACS_GRIDINFO( ICTXT, NPROW, NPCOL, MYROW, MYCOL )
 *
-*WCC  WRITE( *, FMT = 9999 ) MYROW, MYCOL, SRNAME, INFO
+      WRITE( *, FMT = 9999 ) MYROW, MYCOL, SRNAME, INFO
 *
  9999 FORMAT( '{', I5, ',', I5, '}:  On entry to ', A,
      $        ' parameter number ', I4, ' had an illegal value' )
