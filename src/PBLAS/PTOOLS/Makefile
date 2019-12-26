@@ -1,6 +1,51 @@
+############################################################################
+#
+#  Program:         PBLAS -- (version 2.0)
+#
+#  Module:          Makefile
+#
+#  Purpose:         PTOOLS makefile
+#
+#  Creation date:   April 1, 1998
+#
+#  Modified:        February 15, 2000
+#
+#  Send bug reports, comments or suggestions to scalapack@cs.utk.edu
+#
+############################################################################
+
 include ../../SLmake.inc
 
-all: double
+############################################################################
+#
+#  This is the makefile to create a library for the PBLAS F77 tools.
+#  The files are grouped as follows:
+#
+#     ALLTOOLS -- Auxiliary routines for Level 1, 2 and 3 PBLAS
+#
+#       STOOLS -- Single precision real PBLAS Level F77 tools routines
+#       CTOOLS -- Single precision complex PBLAS Level F77 tools routines
+#       DTOOLS -- Double precision real PBLAS Level F77 tools routines
+#       ZTOOLS -- Double precision complex PBLAS Level F77 tools routines
+#
+#  The library can be set up to include routines for any combination
+#  of the four precisions.  First, modify the ../../../SLmake.inc file
+#  definitions to match your compiler and the options to be used.
+#  Then to create or add to the library, enter make followed by one or
+#  more of the precisions desired.  Some examples:
+#       make single
+#       make single complex
+#       make single double complex complex16
+#  Alternatively, the command
+#       make
+#  without any arguments creates a library of all four precisions.
+#
+#  To remove the object files after the library is created, enter
+#       make clean
+#
+############################################################################
+
+all: single double complex complex16
 
 #---------------------------------------------------------------------------
 #  The following line defines auxiliary routines needed by the PBLAS tools
@@ -41,25 +86,46 @@ ALLTOOLS = $(ALLCTOOLS)
 #  The C PBLAS tools
 #---------------------------------------------------------------------------
 
+SCTOOLS = PB_Cstypeset.o
+
 DCTOOLS = PB_Cdtypeset.o
 
+CCTOOLS = PB_Cctypeset.o
+
+ZCTOOLS = PB_Cztypeset.o
+
 #---------------------------------------------------------------------------
 
+STOOLS = $(SCTOOLS)
+CTOOLS = $(CCTOOLS) $(SCTOOLS)
 DTOOLS = $(DCTOOLS)
+ZTOOLS = $(ZCTOOLS) $(DCTOOLS)
 
 #---------------------------------------------------------------------------
 
-PKG_DPTOOLS = $(ALLTOOLS:.o=.co) $(DTOOLS:.o=.co)
+SPTOOLS = $(ALLTOOLS) $(STOOLS)
+CPTOOLS = $(ALLTOOLS) $(CTOOLS)
+DPTOOLS = $(ALLTOOLS) $(DTOOLS)
+ZPTOOLS = $(ALLTOOLS) $(ZTOOLS)
 
-double: $(PKG_DPTOOLS)
-	$(ARCH) $(ARCHFLAGS) ../../$(SCALAPACKLIB) $(PKG_DPTOOLS)
-	$(RANLIB) ../../$(SCALAPACKLIB)
+single: $(SPTOOLS)
+	$(ARCH) $(ARCHFLAGS) ../../../$(SCALAPACKLIB) $(SPTOOLS)
+	$(RANLIB) ../../../$(SCALAPACKLIB)
+
+complex: $(CPTOOLS)
+	$(ARCH) $(ARCHFLAGS) ../../../$(SCALAPACKLIB) $(CPTOOLS)
+	$(RANLIB) ../../../$(SCALAPACKLIB)
+
+double: $(DPTOOLS)
+	$(ARCH) $(ARCHFLAGS) ../../../$(SCALAPACKLIB) $(DPTOOLS)
+	$(RANLIB) ../../../$(SCALAPACKLIB)
+
+complex16: $(ZPTOOLS)
+	$(ARCH) $(ARCHFLAGS) ../../../$(SCALAPACKLIB) $(ZPTOOLS)
+	$(RANLIB) ../../../$(SCALAPACKLIB)
 
 clean:
-	rm -f *.fo *.co
-  
-.SUFFIXES: .fo .co
-.f.fo:
-	$(FC) -o $*.fo -c $(FCFLAGS) $*.f
-.c.co:
-	$(CC) -o $*.co -c $(CDEFS) $(CCFLAGS) $*.c
+	rm -f *.o
+
+.f.o : ; $(FC) -c $(FCFLAGS) $*.f
+.c.o : ; $(CC) -c $(CDEFS) $(CCFLAGS) $*.c

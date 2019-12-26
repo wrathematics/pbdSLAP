@@ -1,8 +1,3 @@
-//WCC:add
-#include <R.h>
-#include <Rinternals.h>
-
-
 #ifndef BDEF_H
 #define BDEF_H 1
 
@@ -224,15 +219,10 @@ int BI_ContxtNum(BLACSCONTEXT *ctxt);
 /*
  * A small macro useful for debugging
  */
-//WCC #define ErrPrint \
-//WCC { \
-//WCC    extern int BI_Iam; \
-//WCC    fprintf(stderr, "%d: line %d of file %s\n", BI_Iam, __LINE__, __FILE__); \
-//WCC }
 #define ErrPrint \
 { \
    extern int BI_Iam; \
-   REprintf("%d: line %d of file %s\n", BI_Iam, __LINE__, __FILE__); \
+   fprintf(stderr, "%d: line %d of file %s\n", BI_Iam, __LINE__, __FILE__); \
 }
 
 /*

@@ -25,9 +25,7 @@ void BI_BlacsErr(int ConTxt, int line, char *file, char *form, ...)
    }
    else myrow = mycol = -1;
 
-//WCC   fprintf(stderr,
-//WCC:add
-   REprintf(
+   fprintf(stderr,
 "BLACS ERROR '%s'\nfrom {%d,%d}, pnum=%d, Contxt=%d, on line %d of file '%s'.\n\n",
            cline, myrow, mycol, BI_Iam, ConTxt, line, file);
 

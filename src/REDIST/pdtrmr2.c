@@ -1,5 +1,3 @@
-#include <R.h>	//WCC:add
-
 #include "redist.h"
 /* $Id: pdtrmr2.c,v 1.1.1.1 2000/02/15 18:04:09 susan Exp $
  * 
@@ -232,10 +230,8 @@ intersect(uplo, diag,
   case SIZEBUFF:	/* computation of sizebuff */
     break;
   default:
-//WCC    printf("action is  %d outside the scope of the case [0..2] !! \n ", action);
-//WCC    exit(0);
-    Rprintf("action is  %d outside the scope of the case [0..2] !! \n ", action);
-    error("exit intersect");
+    printf("action is  %d outside the scope of the case [0..2] !! \n ", action);
+    exit(0);
     break;
   };	/* switch (action) */
 }/* intersect() */

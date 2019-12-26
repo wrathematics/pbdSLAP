@@ -69,7 +69,7 @@
             A( I ) = CHKVAL
    10    CONTINUE
       ELSE
-*WCC     WRITE( *, FMT = * ) 'WARNING no pre-guardzone in PIFILLPAD'
+         WRITE( *, FMT = * ) 'WARNING no pre-guardzone in PIFILLPAD'
       END IF
 *
 *     Put check buffer in back of A
@@ -80,7 +80,7 @@
             A( I ) = CHKVAL
    20    CONTINUE
       ELSE
-*WCC     WRITE( *, FMT = * ) 'WARNING no post-guardzone in PIFILLPAD'
+         WRITE( *, FMT = * ) 'WARNING no post-guardzone in PIFILLPAD'
       END IF
 *
 *     Put check buffer in all (LDA-M) gaps

@@ -1,5 +1,3 @@
-#include <R.h>	//WCC:add
-
 /* ---------------------------------------------------------------------
 *
 *  -- PBLAS auxiliary routine (version 2.0) --
@@ -60,8 +58,7 @@ char * PB_Cmalloc( LENGTH )
    {
       if( !( bufptr = (char *) malloc( (unsigned)LENGTH ) ) )
       {
-//WCC         (void) fprintf( stderr, "Not enough memory on line %d of file %s!!\n",
-         REprintf("Not enough memory on line %d of file %s!!\n",
+         (void) fprintf( stderr, "Not enough memory on line %d of file %s!!\n",
                          __LINE__, __FILE__ );
          Cblacs_abort( -1, -1 );
       }

@@ -312,8 +312,7 @@
 *
 *     Check if KTOP and KBOT are valid.
 *
-*WCC  IF( KTOP.LT.1 .OR. KBOT.GT.N ) STOP
-      IF( KTOP.LT.1 .OR. KBOT.GT.N ) GO TO 999
+      IF( KTOP.LT.1 .OR. KBOT.GT.N ) RETURN
 *
 *     Create and chase NUMWIN chains of NBMPS bulges.
 *
@@ -420,19 +419,15 @@
 *
                LLKBOT = LLKTOP + LNWIN - 1
                IF( LKTOP.EQ.KTOP .AND. LKBOT.EQ.KBOT ) THEN
-                  !JOB = 'All steps'
-                  JOB = 'A'
+                  JOB = 'All steps'
                   ICHOFF = 1
                ELSEIF( LKTOP.EQ.KTOP ) THEN
-                  !JOB = 'Introduce and chase'
-                  JOB = 'I'
+                  JOB = 'Introduce and chase'
                ELSEIF( LKBOT.EQ.KBOT ) THEN
-                  !JOB = 'Off-chase bulges'
-                  JOB = 'O'
+                  JOB = 'Off-chase bulges'
                   ICHOFF = 1
                ELSE
-                  !JOB = 'Chase bulges'
-                  JOB = 'C'
+                  JOB = 'Chase bulges'
                END IF
 *
 *              Copy submatrix of H corresponding to window WIN into
@@ -629,17 +624,13 @@
 *                 possibly be exploited or not.
 *
                   IF( LKTOP.EQ.KTOP .AND. LKBOT.EQ.KBOT ) THEN
-                     !JOB = 'All steps'
-                     JOB = 'A'
+                     JOB = 'All steps'
                   ELSEIF( LKTOP.EQ.KTOP ) THEN
-                     !JOB = 'Introduce and chase'
-                     JOB = 'I'
+                     JOB = 'Introduce and chase'
                   ELSEIF( LKBOT.EQ.KBOT ) THEN
-                     !JOB = 'Off-chase bulges'
-                     JOB = 'O'
+                     JOB = 'Off-chase bulges'
                   ELSE
-                     !JOB = 'Chase bulges'
-                     JOB = 'C'
+                     JOB = 'Chase bulges'
                   END IF
                END IF
 *
@@ -1228,20 +1219,16 @@
      $                 (MYROW.EQ.RSRC4 .AND. MYCOL.EQ.CSRC4) ) THEN
                      IF( LKTOP.EQ.KTOP .AND. LKBOT.EQ.KBOT .AND.
      $                    (DIM1.LE.LCHAIN .OR. DIM1.LE.NTINY ) ) THEN
-                        !JOB = 'All steps'
-                        JOB = 'A'
+                        JOB = 'All steps'
                         ICHOFF = 1
                      ELSEIF( LKTOP.EQ.KTOP .AND.
      $                    ( DIM1.LE.LCHAIN .OR. DIM1.LE.NTINY ) ) THEN
-                        !JOB = 'Introduce and chase'
-                        JOB = 'I'
+                        JOB = 'Introduce and chase'
                      ELSEIF( LKBOT.EQ.KBOT ) THEN
-                        !JOB = 'Off-chase bulges'
-                        JOB = 'O'
+                        JOB = 'Off-chase bulges'
                         ICHOFF = 1
                      ELSE
-                        !JOB = 'Chase bulges'
-                        JOB = 'C'
+                        JOB = 'Chase bulges'
                      END IF
                      KU = LNWIN - KDU + 1
                      KWH = KDU + 1
@@ -1790,19 +1777,15 @@
 *                    could possibly be exploited.
 *
                      IF( LKTOP.EQ.KTOP .AND. LKBOT.EQ.KBOT ) THEN
-                        !JOB = 'All steps'
-                        JOB = 'A'
+                        JOB = 'All steps'
                      ELSEIF( LKTOP.EQ.KTOP .AND.
      $                    ( DIM1.LT.LCHAIN+1 .OR. DIM1.LE.NTINY ) )
      $                    THEN
-                        !JOB = 'Introduce and chase'
-                        JOB = 'I'
+                        JOB = 'Introduce and chase'
                      ELSEIF( LKBOT.EQ.KBOT ) THEN
-                        !JOB = 'Off-chase bulges'
-                        JOB = 'O'
+                        JOB = 'Off-chase bulges'
                      ELSE
-                        !JOB = 'Chase bulges'
-                        JOB = 'C'
+                        JOB = 'Chase bulges'
                      END IF
                   END IF
 *
@@ -2289,4 +2272,4 @@
 *
 *     End of PDLAQR5
 *
- 999  END
+      END

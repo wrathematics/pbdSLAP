@@ -3,7 +3,7 @@
 void BI_BlacsAbort(int ErrNo)
 {
    int ierr;
-//WCC   fflush(stderr);
-//WCC   fflush(stdout);
+   fflush(stderr);
+   fflush(stdout);
    ierr=MPI_Abort(MPI_COMM_WORLD, ErrNo);
 }

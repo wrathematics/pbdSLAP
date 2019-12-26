@@ -168,8 +168,8 @@
          IF( ICURROW.EQ.IRPRNT .AND. ICURCOL.EQ.ICPRNT ) THEN
             IF( MYROW.EQ.IRPRNT .AND. MYCOL.EQ.ICPRNT ) THEN
                DO 10 K = 0, IB-1
-*WCC              WRITE( NOUT, FMT = 9999 )
-*WCC $                   CMATNM, IA+K, JA+H, A( II+K+(JJ+H-1)*LDA )
+                  WRITE( NOUT, FMT = 9999 )
+     $                   CMATNM, IA+K, JA+H, A( II+K+(JJ+H-1)*LDA )
    10          CONTINUE
             END IF
          ELSE
@@ -180,8 +180,8 @@
                CALL IGERV2D( ICTXT, IB, 1, WORK, DESCA( MB_ ),
      $                       ICURROW, ICURCOL )
                DO 20 K = 1, IB
-*WCC              WRITE( NOUT, FMT = 9999 )
-*WCC $                   CMATNM, IA+K-1, JA+H, WORK( K )
+                  WRITE( NOUT, FMT = 9999 )
+     $                   CMATNM, IA+K-1, JA+H, WORK( K )
    20          CONTINUE
             END IF
          END IF
@@ -197,8 +197,8 @@
             IF( ICURROW.EQ.IRPRNT .AND. ICURCOL.EQ.ICPRNT ) THEN
                IF( MYROW.EQ.IRPRNT .AND. MYCOL.EQ.ICPRNT ) THEN
                   DO 30 K = 0, IB-1
-*WCC                 WRITE( NOUT, FMT = 9999 )
-*WCC $                      CMATNM, I+K, JA+H, A( II+K+(JJ+H-1)*LDA )
+                     WRITE( NOUT, FMT = 9999 )
+     $                      CMATNM, I+K, JA+H, A( II+K+(JJ+H-1)*LDA )
    30             CONTINUE
                END IF
             ELSE
@@ -209,8 +209,8 @@
                   CALL IGERV2D( ICTXT, IB, 1, WORK, DESCA( MB_ ),
      $                          ICURROW, ICURCOL )
                   DO 40 K = 1, IB
-*WCC                 WRITE( NOUT, FMT = 9999 )
-*WCC $                      CMATNM, I+K-1, JA+H, WORK( K )
+                     WRITE( NOUT, FMT = 9999 )
+     $                      CMATNM, I+K-1, JA+H, WORK( K )
    40             CONTINUE
                END IF
             END IF
@@ -239,8 +239,8 @@
             IF( ICURROW.EQ.IRPRNT .AND. ICURCOL.EQ.ICPRNT ) THEN
                IF( MYROW.EQ.IRPRNT .AND. MYCOL.EQ.ICPRNT ) THEN
                   DO 70 K = 0, IB-1
-*WCC                 WRITE( NOUT, FMT = 9999 )
-*WCC $                      CMATNM, IA+K, J+H, A( II+K+(JJ+H-1)*LDA )
+                     WRITE( NOUT, FMT = 9999 )
+     $                      CMATNM, IA+K, J+H, A( II+K+(JJ+H-1)*LDA )
    70             CONTINUE
                END IF
             ELSE
@@ -251,8 +251,8 @@
                   CALL IGERV2D( ICTXT, IB, 1, WORK, DESCA( MB_ ),
      $                          ICURROW, ICURCOL )
                   DO 80 K = 1, IB
-*WCC                 WRITE( NOUT, FMT = 9999 )
-*WCC $                      CMATNM, IA+K-1, J+H, WORK( K )
+                     WRITE( NOUT, FMT = 9999 )
+     $                      CMATNM, IA+K-1, J+H, WORK( K )
    80             CONTINUE
                END IF
             END IF
@@ -268,8 +268,8 @@
                IF( ICURROW.EQ.IRPRNT .AND. ICURCOL.EQ.ICPRNT ) THEN
                   IF( MYROW.EQ.IRPRNT .AND. MYCOL.EQ.ICPRNT ) THEN
                      DO 90 K = 0, IB-1
-*WCC                    WRITE( NOUT, FMT = 9999 )
-*WCC $                         CMATNM, I+K, J+H, A( II+K+(JJ+H-1)*LDA )
+                        WRITE( NOUT, FMT = 9999 )
+     $                         CMATNM, I+K, J+H, A( II+K+(JJ+H-1)*LDA )
    90                CONTINUE
                   END IF
                ELSE
@@ -280,8 +280,8 @@
                      CALL IGERV2D( ICTXT, IB, 1, WORK, DESCA( MB_ ),
      $                             ICURROW, ICURCOL )
                      DO 100 K = 1, IB
-*WCC                    WRITE( NOUT, FMT = 9999 )
-*WCC $                         CMATNM, I+K-1, J+H, WORK( K )
+                        WRITE( NOUT, FMT = 9999 )
+     $                         CMATNM, I+K-1, J+H, WORK( K )
   100                CONTINUE
                   END IF
                END IF

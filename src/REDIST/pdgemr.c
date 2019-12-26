@@ -1,5 +1,3 @@
-#include <R.h>	//WCC:add
-
 #include "redist.h"
 /** $Id: pdgemr.c,v 1.1.1.1 2000/02/15 18:04:09 susan Exp $
   ------------------------------------------------------------------------
@@ -415,10 +413,8 @@ Cpdgemr2d(m, n,
   }
   for (i = 0; i < NBPARAM; i++) {
     if (param[i] == MAGIC_MAX) {
-//WCC      fprintf(stderr, "xxGEMR2D:something wrong in the parameters\n");
-//WCC      exit(1);
-      REprintf("xxGEMR2D:something wrong in the parameters\n");
-      error("exit Cpdgemr2d");
+      fprintf(stderr, "xxGEMR2D:something wrong in the parameters\n");
+      exit(1);
     }
   }
 #ifndef NDEBUG
@@ -516,10 +512,8 @@ Cpdgemr2d(m, n,
 	  sendsize = block2buff(v_inter, vinter_nb, h_inter, hinter_nb,
 				ptrmyblock, ma, ptrsendbuff);
 	}	/* if (mesending...) { */
-	//WCC if (mesending && recver[step] >= 0 &&
-	//WCC     (sens == myrang > step)) {
-	if (mesending && (recver[step] >= 0) &&
-	    (sens == (myrang > step))) {
+	if (mesending && recver[step] >= 0 &&
+	    (sens == myrang > step)) {
 	  i = recver[step] / q1;
 	  j = recver[step] % q1;
 	  if (sendsize > 0
@@ -529,10 +523,8 @@ Cpdgemr2d(m, n,
 		     0, proc1[i * q1 + j]);
 	  }	/* sendsize > 0 */
 	}	/* if (mesending ... */
-	//WCC if (merecving && sender[step] >= 0 &&
-	//WCC     (sens == myrang <= step)) {
-	if (merecving && (sender[step] >= 0) &&
-	    (sens == (myrang <= step))) {
+	if (merecving && sender[step] >= 0 &&
+	    (sens == myrang <= step)) {
 	  i = sender[step] / q0;
 	  j = sender[step] % q0;
 	  vinter_nb = scan_intervals('r', ib, ia, m, mb, ma, p1, p0, myprow1, i,

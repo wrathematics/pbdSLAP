@@ -1,5 +1,3 @@
-#include <R.h>	//WCC:add
-
 /* ---------------------------------------------------------------------
 *
 *  -- PBLAS auxiliary routine (version 2.0) --
@@ -78,8 +76,7 @@ char * PB_Cgetbuf( MESS, LENGTH )
          pblasbuf = (char *) malloc( (unsigned) LENGTH );
          if( !pblasbuf )
          {
-//WCC            (void) fprintf( stderr, "ERROR: Memory allocation failed\n%s\n",
-            (void) REprintf("ERROR: Memory allocation failed\n%s\n",
+            (void) fprintf( stderr, "ERROR: Memory allocation failed\n%s\n",
                             MESS );
             Cblacs_abort( -1, -1 );
          }

@@ -1,4 +1,4 @@
-#include <R.h>	//WCC:add
+
 
 /* ---------------------------------------------------------------------
 *
@@ -262,8 +262,7 @@ void pdlachkieee_( int *isieee, double *rmax, double *rmin )
    pinf = 1.0 / pzero;
 
    if( pzero != 0.0 ){
-//WCC      printf("pzero = %g should be zero\n",pzero);
-      Rprintf("pzero = %g should be zero\n",pzero);
+      printf("pzero = %g should be zero\n",pzero);
       *isieee = 0; 
       return ;
    }
@@ -275,13 +274,11 @@ void pdlachkieee_( int *isieee, double *rmax, double *rmin )
       sbit2 = (*(((int *)&pinf)+1) >> 31) & 1;
    }
    if( sbit1 == 1 ){
-//WCC      printf("Sign of positive infinity is incorrect\n");
-      Rprintf("Sign of positive infinity is incorrect\n");
+      printf("Sign of positive infinity is incorrect\n");
       *isieee = 0;
    }
    if( sbit2 == 1 ){
-//WCC      printf("Sign of positive zero is incorrect\n");
-      Rprintf("Sign of positive zero is incorrect\n");
+      printf("Sign of positive zero is incorrect\n");
       *isieee = 0;
    }
 
@@ -290,8 +287,7 @@ void pdlachkieee_( int *isieee, double *rmax, double *rmin )
    ninf = 1.0 / nzero;
 
    if( nzero != 0.0 ){
-//WCC      printf("nzero = %g should be zero\n",nzero);
-      Rprintf("nzero = %g should be zero\n",nzero);
+      printf("nzero = %g should be zero\n",nzero);
       *isieee = 0;
    }
    if( ieflag == 1 ){
@@ -302,13 +298,11 @@ void pdlachkieee_( int *isieee, double *rmax, double *rmin )
       sbit2 = (*(((int *)&ninf)+1) >> 31) & 1;
    }
    if( sbit1 == 0 ){
-//WCC      printf("Sign of negative infinity is incorrect\n");
-      Rprintf("Sign of negative infinity is incorrect\n");
+      printf("Sign of negative infinity is incorrect\n");
       *isieee = 0;
    }
    if( sbit2 == 0 ){
-//WCC      printf("Sign of negative zero is incorrect\n");
-      Rprintf("Sign of negative zero is incorrect\n");
+      printf("Sign of negative zero is incorrect\n");
       *isieee = 0;
    }
 }

@@ -1,4 +1,4 @@
-      SUBROUTINE BDLAAPP( ISIDE, M, N, NB, A, LDA, NITRAF, ITRAF,
+      SUBROUTINE BSLAAPP( ISIDE, M, N, NB, A, LDA, NITRAF, ITRAF,
      $                    DTRAF, WORK )
       IMPLICIT NONE
 *
@@ -7,19 +7,19 @@
 *     ..
 *     .. Array Arguments ..
       INTEGER            ITRAF( * )
-      DOUBLE PRECISION   A( LDA, * ), DTRAF( * ), WORK( * )
+      REAL               A( LDA, * ), DTRAF( * ), WORK( * )
 *
 *
 *  Purpose
 *  =======
 *
-*  BDLAAPP computes
+*  BSLAAPP computes
 *
 *          B = Q**T * A       or       B = A * Q,
 *
 *  where A is an M-by-N matrix and Q is an orthogonal matrix represented
 *  by the parameters in the arrays ITRAF and DTRAF as described in
-*  BDTREXC.
+*  BSTREXC.
 *
 *  This is an auxiliary routine called by BDTRSEN.
 *
@@ -43,7 +43,7 @@
 *          of A and NB specifies the maximal width of the block columns.
 *          If ISIDE = 1, this variable is not referenced.
 *
-*  A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+*  A       (input/output) REAL             array, dimension (LDA,N)
 *          On entry, the matrix A.
 *          On exit, A is overwritten by B.
 *
@@ -55,27 +55,27 @@
 *
 *  ITRAF   (input) INTEGER array, length NITRAF
 *          List of parameters for representing the transformation
-*          matrix Q, see BDTREXC.
+*          matrix Q, see BSTREXC.
 *
-*  DTRAF   (output) DOUBLE PRECISION array, length k, where
+*  DTRAF   (output) REAL             array, length k, where
 *          List of parameters for representing the transformation
-*          matrix Q, see BDTREXC.
+*          matrix Q, see BSTREXC.
 *
-*  WORK    (workspace) DOUBLE PRECISION array, dimension (N)
+*  WORK    (workspace) REAL             array, dimension (N)
 *
 *  =====================================================================
 *
 
 *     .. Parameters ..
-      DOUBLE PRECISION   ZERO, ONE
-      PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0 )
+      REAL               ZERO, ONE
+      PARAMETER          ( ZERO = 0.0E+0, ONE = 1.0E+0 )
 *     ..
 *     .. Local Scalars ..
       INTEGER            I, IT, J, NNB, PD
-      DOUBLE PRECISION   TAU
+      REAL               TAU
 *     ..
 *     .. External Subroutines ..
-      EXTERNAL           DLARFX, DROT
+      EXTERNAL           SLARFX, SROT
 *     .. Intrinsic Functions ..
       INTRINSIC          MIN
 *     ..
@@ -99,7 +99,7 @@
 *
 *                 Apply Givens rotation.
 *
-                  CALL DROT( NNB, A(IT,J), LDA, A(IT+1,J), LDA,
+                  CALL SROT( NNB, A(IT,J), LDA, A(IT+1,J), LDA,
      $                       DTRAF(PD), DTRAF(PD+1) )
                   PD = PD + 2
                ELSE IF( IT.LE.2*M ) THEN
@@ -108,7 +108,7 @@
 *
                   TAU = DTRAF(PD)
                   DTRAF(PD) = ONE
-                  CALL DLARFX( 'Left', 3, NNB, DTRAF(PD), TAU,
+                  CALL SLARFX( 'Left', 3, NNB, DTRAF(PD), TAU,
      $                         A(IT-M,J), LDA, WORK )
                   DTRAF(PD) = TAU
                   PD = PD + 3
@@ -118,7 +118,7 @@
 *
                   TAU = DTRAF(PD+2)
                   DTRAF(PD+2) = ONE
-                  CALL DLARFX( 'Left', 3, NNB, DTRAF(PD), TAU,
+                  CALL SLARFX( 'Left', 3, NNB, DTRAF(PD), TAU,
      $                         A(IT-2*M,J), LDA, WORK )
                   DTRAF(PD+2) = TAU
                   PD = PD + 3
@@ -133,7 +133,7 @@
 *
 *              Apply Givens rotation.
 *
-               CALL DROT( M, A(1,IT), 1, A(1,IT+1), 1, DTRAF(PD),
+               CALL SROT( M, A(1,IT), 1, A(1,IT+1), 1, DTRAF(PD),
      $                    DTRAF(PD+1) )
                PD = PD + 2
             ELSE IF( IT.LE.2*N ) THEN
@@ -142,7 +142,7 @@
 *
                TAU = DTRAF(PD)
                DTRAF(PD) = ONE
-               CALL DLARFX( 'Right', M, 3, DTRAF(PD), TAU, A(1,IT-N),
+               CALL SLARFX( 'Right', M, 3, DTRAF(PD), TAU, A(1,IT-N),
      $                      LDA, WORK )
                DTRAF(PD) = TAU
                PD = PD + 3
@@ -152,7 +152,7 @@
 *
                TAU = DTRAF(PD+2)
                DTRAF(PD+2) = ONE
-               CALL DLARFX( 'Right', M, 3, DTRAF(PD), TAU, A(1,IT-2*N),
+               CALL SLARFX( 'Right', M, 3, DTRAF(PD), TAU, A(1,IT-2*N),
      $                      LDA, WORK )
                DTRAF(PD+2) = TAU
                PD = PD + 3
@@ -162,6 +162,6 @@
 *
       RETURN
 *
-*     End of BDLAAPP
+*     End of BSLAAPP
 *
       END

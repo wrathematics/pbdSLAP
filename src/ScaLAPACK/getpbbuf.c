@@ -1,6 +1,3 @@
-#include <R.h>	//WCC:add
-
-
 #include "tools.h"
 
 char * getpbbuf( mess, length )
@@ -42,8 +39,7 @@ char * getpbbuf( mess, length )
          pblasbuf = (char *) malloc((unsigned)length);
          if( !pblasbuf )
          {
-//WCC            fprintf( stderr,
-            REprintf(
+            fprintf( stderr,
                      "PBLAS %s ERROR: Memory allocation failed\n",
                      mess );
             blacs_abort_( &mone, &mone );

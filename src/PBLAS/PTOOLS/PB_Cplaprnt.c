@@ -1,5 +1,3 @@
-#include <R.h>	//WCC:add
-
 /* ---------------------------------------------------------------------
 *
 *  -- PBLAS auxiliary routine (version 2.0) --
@@ -191,8 +189,7 @@ void PB_Cplaprnt( TYPE, M, N, A, IA, JA, DESCA, IRPRNT, ICPRNT, CMATNM )
          for( pcol = 0; pcol < npcol; pcol++ )
          {
             if( ( myrow == IRPRNT ) && ( mycol == ICPRNT ) )
-//WCC               (void) fprintf( stdout,
-               Rprintf(
+               (void) fprintf( stdout,
                "Colum-replicated array -- copy in process column: %d\n", pcol );
             PB_Cplaprn2( TYPE, M, N, A, IA, JA, DESCA, IRPRNT, ICPRNT, CMATNM,
                          DESCA[ RSRC_ ], pcol );
@@ -212,8 +209,7 @@ void PB_Cplaprnt( TYPE, M, N, A, IA, JA, DESCA, IRPRNT, ICPRNT, CMATNM )
          for( prow = 0; prow < nprow; prow++ )
          {
             if( ( myrow == IRPRNT ) && ( mycol == ICPRNT ) )
-//WCC               (void) fprintf( stdout,
-               Rprintf(
+               (void) fprintf( stdout,
                "Row-replicated array -- copy in process row: %d\n", prow );
             PB_Cplaprn2( TYPE, M, N, A, IA, JA, DESCA, IRPRNT, ICPRNT, CMATNM,
                          prow, DESCA[ CSRC_ ] );
@@ -229,8 +225,7 @@ void PB_Cplaprnt( TYPE, M, N, A, IA, JA, DESCA, IRPRNT, ICPRNT, CMATNM )
             for( pcol = 0; pcol < npcol; pcol++ )
             {
                if( ( myrow == IRPRNT ) && ( mycol == ICPRNT ) )
-//WCC                  (void) fprintf( stdout,
-                  Rprintf(
+                  (void) fprintf( stdout,
                "Replicated array -- copy in process (%d,%d)\n", prow, pcol );
                PB_Cplaprn2( TYPE, M, N, A, IA, JA, DESCA, IRPRNT, ICPRNT,
                             CMATNM, prow, pcol );
@@ -520,29 +515,24 @@ void PB_Cprnt( TYPE, SIZE, USIZ, N, A, IA, JA, CMATNM )
 */
    if( TYPE == INT )
       for( k = 0; k < N; k++ )
-//WCC         (void) fprintf( stdout, "%s(%6d,%6d)=%8d\n",      CMATNM, IA+k, JA,
-         Rprintf("%s(%6d,%6d)=%8d\n",      CMATNM, IA+k, JA,
+         (void) fprintf( stdout, "%s(%6d,%6d)=%8d\n",      CMATNM, IA+k, JA,
                          *((int *)(&A[k*SIZE])) );
    else if( TYPE == SREAL )
       for( k = 0; k < N; k++ )
-//WCC         (void) fprintf( stdout, "%s(%6d,%6d)=%16.8f\n",   CMATNM, IA+k, JA,
-         Rprintf("%s(%6d,%6d)=%16.8f\n",   CMATNM, IA+k, JA,
+         (void) fprintf( stdout, "%s(%6d,%6d)=%16.8f\n",   CMATNM, IA+k, JA,
                          *((float *)(&A[k*SIZE])) );
    else if( TYPE == DREAL )
       for( k = 0; k < N; k++ )
-//WCC         (void) fprintf( stdout, "%s(%6d,%6d)=%30.18f\n",  CMATNM, IA+k, JA,
-         Rprintf("%s(%6d,%6d)=%30.18f\n",  CMATNM, IA+k, JA,
+         (void) fprintf( stdout, "%s(%6d,%6d)=%30.18f\n",  CMATNM, IA+k, JA,
                          *((double *)(&A[k*SIZE])) );
    else if( TYPE == SCPLX )
       for( k = 0; k < N; k++ )
-//WCC         (void) fprintf( stdout, "%s(%6d,%6d)=%16.8f+i*(%16.8f)\n",   CMATNM,
-         Rprintf("%s(%6d,%6d)=%16.8f+i*(%16.8f)\n",   CMATNM,
+         (void) fprintf( stdout, "%s(%6d,%6d)=%16.8f+i*(%16.8f)\n",   CMATNM,
                          IA+k, JA, *((float *)(&A[k*SIZE])),
                          *((float *)(&A[k*SIZE+USIZ])) );
    else if( TYPE == DCPLX )
       for( k = 0; k < N; k++ )
-//WCC         (void) fprintf( stdout, "%s(%6d,%6d)=%30.18f+i*(%30.18f)\n", CMATNM,
-         Rprintf("%s(%6d,%6d)=%30.18f+i*(%30.18f)\n", CMATNM,
+         (void) fprintf( stdout, "%s(%6d,%6d)=%30.18f+i*(%30.18f)\n", CMATNM,
                          IA+k, JA, *((double *)(&A[k*SIZE])),
                          *((double *)(&A[k*SIZE+USIZ])) );
 /*
